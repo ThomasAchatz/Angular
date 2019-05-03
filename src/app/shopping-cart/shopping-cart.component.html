@@ -1,0 +1,51 @@
+<div class="ui container">
+  <h1>Warenkorb</h1>
+  <div class="ui grid" *ngFor="let item of items">
+    <div class="two wide column">
+      <img class="ui tiny image" height="100px" width="110px"
+           *ngIf="item.book?.images"
+           [src]="item.book?.images[0]?.url">
+    </div>
+    <div class="content three wide column">
+      <div class="header">{{item.book.title}}</div>
+      <br/>
+      <span>Stück: {{item.quantity}}</span><br/>
+      <button class="ui mini grey basic icon button"
+              (click)="removeOneItem(item.book.isbn)">
+        <i class="minus icon"></i>
+      </button>
+      <button class="ui mini grey basic icon button"
+              (click)="addOneItem(item.book.isbn)">
+        <i class="plus icon"></i>
+      </button>
+    </div>
+    <div class="four wide column">
+      <div class="price">Preis pro Buch: {{item.book.price}}€ (inkl. MWST.)</div>
+    </div>
+
+
+    <div class="two wide column">
+      <button class="ui tiny labeled icon button"
+              (click)="removeAllItems(item.book.isbn)">
+        <i class="remove icon"></i>
+        Löschen
+      </button>
+    </div>
+  </div>
+  <br/>
+
+  <br/>
+  <div class="ui grid">
+    <div class="three wide column">Gesamtpreis (exkl. MWST.):</div> <div class="two wide column">{{total_netto | number:'2.2-2'}}€</div>
+    <div class="three wide column">Mwst.: </div> <div class="two wide column"> {{mwst | number:'1.2-2'}}€</div>
+    <div class="three wide column">Gesamtpreis (inkl. MWST.): </div> <div class="two wide column"> {{total_brutto | number:'2.2-2'}}€</div>
+  </div>
+
+  <br/><br/>
+  <button class="ui button" type="submit" (click)="submitOrder()">
+    Bücher bestellen
+  </button>
+    <button class="ui button" type="submit" [routerLink]="'/books'" >
+        Zurück zur Bücherübersicht
+    </button>
+</div>

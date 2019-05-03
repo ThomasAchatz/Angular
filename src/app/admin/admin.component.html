@@ -1,0 +1,33 @@
+<div class="ui container">
+  <br/>
+  <h1>Verwaltung</h1>
+  <br/><br/>
+  <div *ngFor="let order of orders">
+    <div class="ui grid">
+      <div class="two wide column">
+        <p><b>Kunde:</b> {{order.user_id}}</p>
+      </div>
+      <div class="three wide column">
+        <p><b>Bestellung vom:</b> {{order.date | date}}</p>
+      </div>
+      <div class="four wide column">
+        <div *ngFor="let status of order.stati last as l" >
+          <p *ngIf="l"><b>Aktueller Status:</b> {{status.status}}</p>
+        </div>
+      </div>
+      <div class="three wide column">
+        <p><b>Gesamtpreis:</b> {{order.total_brutto}} €</p>
+      </div>
+      <div class="two wide column" >
+        <button class="ui labeled icon button"  type="submit"
+                [routerLink]="order.id">
+          <i class="write icon"></i>
+          Bearbeiten
+        </button>
+      </div>
+    </div>
+    <br/>
+
+    <br/>
+  </div>
+</div>
