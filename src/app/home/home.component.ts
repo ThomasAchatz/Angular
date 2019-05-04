@@ -19,6 +19,7 @@ import {Book} from '../shared/book';
       
   `,
   styles: []
+
 })
 export class HomeComponent {
   constructor(private router:Router, private route:ActivatedRoute){}

@@ -52,7 +52,9 @@ export class BookFormComponent implements OnInit {
         Validators.min(0),
         Validators.max(10)
       ]],
-      //authors: this.authors,
+
+
+
       images: this.images,
       published: new Date(this.book.published)
     });
@@ -84,8 +86,8 @@ export class BookFormComponent implements OnInit {
   submitForm() {
     this.bookForm.value.images = this.bookForm.value.images.filter(thumbnail => thumbnail.url);
 
-    const book: Book = BookFactory.fromObject(this.bookForm.value); //konvertiere ich ein Buch Objekt durch BookFactory
-    book.images = this.bookForm.value.images; //dem Buch Objekt die Images zugewiesen
+    const book: Book = BookFactory.fromObject(this.bookForm.value);
+    book.images = this.bookForm.value.images;
     console.log(book);
 
     book.authors = this.book.authors;
@@ -95,7 +97,7 @@ export class BookFormComponent implements OnInit {
         this.router.navigate(['../../books', book.isbn], {relativeTo: this.route});
       });
     } else {
-      book.user_id = 1;// just for testing
+      book.user_id = 1;
       console.log(book);
       this.bs.create(book).subscribe(res => {
         this.router.navigate(['../books'], {relativeTo: this.route});
@@ -108,8 +110,8 @@ export class BookFormComponent implements OnInit {
     for (const message of BookFormErrorMessages) {
       const control = this.bookForm.get(message.forControl);
       if (control &&
-          control.dirty && //wenn der User schon damit interagiert hat aber noch keinen korrekten zustand hat
-          control.invalid && //wenn es invalider zustand ist
+          control.dirty &&
+          control.invalid &&
           control.errors[message.forValidator] &&
           !this.errors[message.forControl]) {
         this.errors[message.forControl] = message.text;

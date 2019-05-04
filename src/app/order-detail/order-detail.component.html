@@ -17,17 +17,19 @@
                 <span><b>{{book.title}} </b></span><br/>
                 <span>{{book.subtitle}} </span><br/>
                 <span>{{book.description}}</span><br/>
-                <span>Preis: {{book.price}} € (inkl. Mwst.)</span><br/>
+                <span>Preis: {{book.price}} € (inkl. MWST.)</span><br/>
                 <span>Menge: {{book.pivot.quantity}}</span>
                 <br/><br/>
             </div>
         </div>
         <div class="six wide column">
             <h1>Lieferadresse</h1>
+
             {{order.user.firstname}} {{order.user.lastname}}<br>
             {{order.user.street}} {{order.user.street_number}}<br>
             {{order.user.zip_code}} {{order.user.city}}<br>
             {{order.user.country}}
+
             <br>
             <br/>
         </div>
