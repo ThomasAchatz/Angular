@@ -13,7 +13,7 @@ import {BookValidators} from '../shared/book-validators';
   templateUrl: './book-form.component.html'
 })
 export class BookFormComponent implements OnInit {
-  bookForm: FormGroup; //ist das Formular im html
+  bookForm: FormGroup;
   book = BookFactory.empty();
   errors: { [key: string]: string } = {};
   isUpdatingBook = false;
@@ -27,7 +27,7 @@ export class BookFormComponent implements OnInit {
     const isbn = this.route.snapshot.params['isbn'];
     if (isbn) {
       this.isUpdatingBook = true;
-      this.bs.getSingle(isbn).subscribe(book => { //von Rest das Buch getten
+      this.bs.getSingle(isbn).subscribe(book => {
         this.book = book;
         this.initBook();
       });
@@ -42,10 +42,9 @@ export class BookFormComponent implements OnInit {
       id: this.book.id,
       title: [this.book.title, Validators.required],
       subtitle: this.book.subtitle,
-      price: [this.book.price, Validators.required],
+      price: [this.book.price, [Validators.required, BookValidators]],
       isbn: [this.book.isbn, [
         Validators.required,
-
         BookValidators.isbnFormat
       ]],
       description: this.book.description,
@@ -53,6 +52,7 @@ export class BookFormComponent implements OnInit {
         Validators.min(0),
         Validators.max(10)
       ]],
+      //authors: this.authors,
       images: this.images,
       published: new Date(this.book.published)
     });
@@ -83,12 +83,10 @@ export class BookFormComponent implements OnInit {
 
   submitForm() {
     this.bookForm.value.images = this.bookForm.value.images.filter(thumbnail => thumbnail.url);
-    const book: Book = BookFactory.fromObject(this.bookForm.value);
-    book.images = this.bookForm.value.images;
+
+    const book: Book = BookFactory.fromObject(this.bookForm.value); //konvertiere ich ein Buch Objekt durch BookFactory
+    book.images = this.bookForm.value.images; //dem Buch Objekt die Images zugewiesen
     console.log(book);
-
-
-
 
     book.authors = this.book.authors;
 
@@ -110,8 +108,8 @@ export class BookFormComponent implements OnInit {
     for (const message of BookFormErrorMessages) {
       const control = this.bookForm.get(message.forControl);
       if (control &&
-          control.dirty &&
-          control.invalid &&
+          control.dirty && //wenn der User schon damit interagiert hat aber noch keinen korrekten zustand hat
+          control.invalid && //wenn es invalider zustand ist
           control.errors[message.forValidator] &&
           !this.errors[message.forControl]) {
         this.errors[message.forControl] = message.text;

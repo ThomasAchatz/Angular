@@ -64,3 +64,9 @@
   <i class="write icon"></i>
   Buch bearbeiten
 </a>
+
+<a  *ngIf="authService.isLoggedOut()" class="ui tiny labeled icon button"
+    [routerLink]="['../../login']">
+    <i class="write icon"></i>
+    Zum Warenkorb hinzufügen
+</a>
