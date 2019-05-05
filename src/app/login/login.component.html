@@ -9,7 +9,7 @@
       <div *ngIf="loginForm.get('username').invalid &&
      (loginForm.get('username').dirty || loginForm.get('username').touched) &&
      loginForm.get('username').hasError('required')" class="ui negative message">
-        Benutzername ist verpflichtend </div>
+        Benutzername ist ein Pflichtfeld </div>
       <div *ngIf="loginForm.get('username').invalid &&
      (loginForm.get('username').dirty || loginForm.get('username').touched) &&
      loginForm.get('username').hasError('email')" class="ui negative message">
@@ -22,7 +22,7 @@
       <input type="password" formControlName="password">
       <div *ngIf="loginForm.get('password').invalid &&
      (loginForm.get('password').dirty || loginForm.get('password').touched)" class="ui negative message">
-        Passwort ist verpflichtend </div>
+        Passwort ist ein Pflichtfeld </div>
     </div>
 
     <button type="submit" class="ui button" [disabled]="loginForm.invalid">Login</button>

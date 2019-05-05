@@ -36,7 +36,7 @@ export class AdminDetailComponent implements OnInit {
       this.status.status = this.selectedStatus;
     }
 
-    this.bs.saveNewStatus(this.status).subscribe(res => {
+    this.bs.saveStatus(this.status).subscribe(res => {
       this.router.navigate(['../'], {relativeTo: this.route});
     });
   }

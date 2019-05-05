@@ -1,4 +1,4 @@
-<div class="ui grid" *ngIf="book"><!-- ngIf testet ob von außen ein gültiges Buch mitgegeben wird-->
+<div class="ui grid" *ngIf="book">
   <div class="four wide column">
     <img class="ui large image" *ngIf="book.images && book.images[0]"
          [src]="book.images[0].url">

@@ -59,7 +59,7 @@ export class BookStoreService {
         return this.http.get(`${this.api}/admin/${order_id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
     }
 
-    saveNewStatus(status:Status):Observable<any>{
+    saveStatus(status:Status):Observable<any>{
         return this.http.put(`${this.api}/admin`, status).pipe(retry(3)).pipe(catchError(this.errorHandler));
     }
 

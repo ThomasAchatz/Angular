@@ -22,6 +22,17 @@
                 <br/><br/>
             </div>
         </div>
+
+
+        <div class="three column wide column">
+            <h3 style="font-size: 15px" *ngIf="order.stati?.length == 0">Aktueller Status: In Warteschlange</h3>
+            <div *ngFor="let status of order.stati last as l" >
+                <span>Status <b>"{{status.status}}" </b></span><br/>
+            </div>
+        </div>
+    <br/>
+
+
         <div class="six wide column">
             <h1>Lieferadresse</h1>
 
@@ -34,7 +45,7 @@
             <br/>
         </div>
         <button [routerLink]="'/orders'" class="ui button">
-            Zurück zur Übersicht
+            Zurück zru Übersicht
         </button>
         <button [routerLink]="'/orders'" class="ui button">
             Bestellung löschen
