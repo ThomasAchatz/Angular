@@ -150,15 +150,14 @@ export class ShoppingCartComponent implements OnInit {
         this.order.items = this.cartItems;
         this.order.user_id = JSON.parse(localStorage.getItem('userId'));
         this.order.date = new Date(this.order.date);
-        this.order.total_brutto = this.total_brutto;
         this.order.total_netto = this.total_netto;
+        this.order.total_brutto = this.total_brutto;
 
-        console.log(this.order);
+
 
         this.bs.saveToCart(this.order).subscribe(res =>
         {
-          console.log("Saved order");
-          console.log(res);
+          console.log("Order gespeichert");
 
         });
 
